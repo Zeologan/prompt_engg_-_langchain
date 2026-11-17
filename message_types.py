@@ -17,19 +17,32 @@ model = init_chat_model(
 #     HumanMessage("What is a percentage?"),
 # ]
 
+
 # response = model.invoke(messages)
 # print(response.content)
 
-messages = [
-    SystemMessage("You are a helpful travel guide."),
-    HumanMessage("Suggest one hill station near Mumbai."),
-    AIMessage("Lonavala is a great choice. It's about 2 hours from Mumbai."),
-    HumanMessage("What is the best time to visit there?"),  # "there" = Lonavala
-]
 
-response = model.invoke(messages)
+### --- The Model Does NOT Remember: Conversations
+# messages = [
+#     SystemMessage("You are a helpful travel guide."),
+#     HumanMessage("Suggest one hill station near Mumbai."),
+#     AIMessage("Lonavala is a great choice. It's about 2 hours from Mumbai."),
+#     HumanMessage("What is the best time to visit there?"),  # "there" = Lonavala
+# ]
+
+# response = model.invoke(messages)
+# print(response.content)          # The answer text
+# print(response.usage_metadata)   # Tokens used: input, output, total
+
+
+### --- The Response Object
+response = model.invoke("Say hello in Marathi.")
+
 print(response.content)          # The answer text
 print(response.usage_metadata)   # Tokens used: input, output, total
+
+
+
 
 # Stream: print the answer word by word
 # for chunk in model.stream("Write a 4-line poem about Mumbai rain."):
